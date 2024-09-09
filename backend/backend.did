@@ -1,0 +1,28 @@
+type User = 
+ record {
+   createdAt: Time;
+   id: principal;
+   username: text;
+ };
+type Time = int;
+type Song = 
+ record {
+   artist: text;
+   duration: float64;
+   id: nat;
+   title: text;
+   url: text;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: User;
+ };
+service : {
+  addSong: (text, text, float64, text) -> (nat);
+  createUser: (text) -> (Result);
+  getAllSongs: () -> (vec Song) query;
+  getSong: (nat) -> (opt Song) query;
+  getUser: (principal) -> (opt User) query;
+  updateUser: (text) -> (Result);
+}
